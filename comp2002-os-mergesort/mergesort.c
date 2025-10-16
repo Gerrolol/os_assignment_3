@@ -17,6 +17,10 @@ void my_mergesort(int left, int right){
 	if(left >=right){
 		return;
 	}
+	int mid = left + (right-left)/2;
+	my_mergesort(left, mid);
+	my_mergesort(mid+1, right);
+	merge(left, )
 }
 
 
