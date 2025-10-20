@@ -4,6 +4,7 @@
 
 #include "mergesort.h"
 
+<<<<<<< HEAD
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h> /* for malloc */
@@ -15,6 +16,20 @@ void merge(int leftstart, int leftend, int rightstart, int rightend) {}
 
 /* this function will be called by parallel_mergesort() as its base case. */
 void my_mergesort(int left, int right) {}
+=======
+/* this function will be called by mergesort() and also by parallel_mergesort(). */
+void merge(int leftstart, int leftend, int rightstart, int rightend){
+
+}
+
+/* this function will be called by parallel_mergesort() as its base case. */
+void my_mergesort(int left, int right){
+	if(left >=right){
+		return;
+	}
+}
+>>>>>>> c56fc56 (initial chanes to my_mergesot)
+
 
 /* this function will be called by the testing program. */
 void* parallel_mergesort(void* arg) {
