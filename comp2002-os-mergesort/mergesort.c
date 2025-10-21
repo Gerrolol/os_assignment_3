@@ -12,7 +12,7 @@
 /* this function will be called by mergesort() and also by parallel_mergesort(). */
 void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int size = (leftend - leftstart  + 1) + (rightend - rightstart + 1);
-	B = (int *) malloc(size * sizeof(int));
+	int* B = (int *) malloc(size * sizeof(int));
 	int ptr = 0;
 	
 	int l = leftstart;
@@ -40,7 +40,8 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 		r++;
 	}
 	//merge back into A
-	for(int i=0; i<size; i++){
+	int i;
+	for(i=0; i<size; i++){
 		A[leftstart + i] = B[i];
 	}
 	free(B);
