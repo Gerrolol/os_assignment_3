@@ -45,7 +45,10 @@ insert the smaller value into a new array and finally replacing the original arr
 
 The program functions are the my_mergesort function and the parallel_mergesort function:
 
-The my_mergesort function...
+The my_mergesort function is a recursive function which follows a divide and conquer approach. It takes two indices, left and right,
+representing the portion of the array tobe  soorted. If the range has one more elements the function returns since that part is
+already soorted. Otherwise, it calculates the midpoint and recursively calls itself too sort the left half and the right half. Once
+both halves are sorted the function calls merge() into one sorted section. This continues until the entire array is fully sorted
 
 The parallel_mergesort function will recursively call itself in a new thread using pthread_create, it divides the array to sort
 into two across the middle, then creates two new threads running mergesort, each working on one of the two halves of the array.
@@ -62,19 +65,32 @@ to be detailed here.
 
 ## Known Bugs
 
-List known bugs that you weren't able to fix (or ran out of time to fix).
+One of the bugs that we fixed was to do with memory handling in our merge sort implementation. Initially, 
+the merge function used a global temporary array B to store immediate results during merging, which caused 
+issues when freeing memory, specifically a double free error that led to a memory leak. This happened because 
+the global array was being reused and freed multiple times across recursive calls. To fix this, we changed the 
+implementation so that the merge function createss its own temporary array locally within each call. This ensures
+that memoery is allocated and freed safely within the function scope, preventing double frees. 
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your own?
-What kinds of errors did you get? How did you fix them?
-
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
+During the development of the parallel merge sort, one of the biggest challenges I faced was thread synchronization
+challenges. Some threads finish before otheres causing partial merges or segmentation faults. I learned more ahout
+using pthread-create and pthread_join correctly through reading the OS textbook to ensure that the threads complete
+before merging. I also refreshed my memory on how a basic mergesort algorihtm works byimplementing it in leetcode.
+Another challenge was understanding when to switch from parallel to sequential sorting, which required 
+expermenting with different cutoff levels for perofmrance. Through debugging segmentationn faults, I gained a much clearer
+understanding of how recursion, memory, and threading interact. Once everytrhing worked out, it was rewarding seeing how 
+parallelism could significantly speed up sorting large arrays. Reflecting oon the development and testing process,
+the testing process was gradual as we ran it on small arrays to verify correctness before moving onto larger inputs, which
+helped isolate bugs and also check time to complete in order to confirm our parral merges were working.
 
 ## Sources Used
 
 Used AI to understand what to return for void* return types.
 Used AI to learn how to implicit cast a void* type to a argument type.
+watched youtube video to remind myself how mergesort works:
+https://www.youtube.com/watch?v=3j0SWDX4AtU&t=101s
+
+used ageeksforgeeks to remind myself how to use malloc again:
+https://www.geeksforgeeks.org/c/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/
