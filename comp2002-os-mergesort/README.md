@@ -56,9 +56,13 @@ function to finish sorting the rest of that array.
 
 ## Testing
 
-This section should detail how you tested your code. Simply stating "I ran
-it a few times and it seems to work" is not sufficient. Your testing needs
-to be detailed here.
+For testing, there were a few different things we did to ensure our code was correct. For starters, we used the provided file
+test-mergesort.c to as a baseline before submission. This allowed us to find initial errors in our code such as indexing errors,
+segmentation faults and other memory allocation errors. After this, we ran the code on a few test examples and examined the output
+to check whether using a multithreaded approach was able to reduce the time taken to sort the list, which ensures that our
+multithreading was also implemented correctly. Finally, we submitted our code onto gradescope, and it was able to successfully pass
+all the test cases, which further ensures that we had done all of the coding correctly. Aside from this, I also had AI read through
+the code to identify any potential bugs that I have missed, and it was unable to identify any.
 
 ## Known Bugs
 
@@ -78,3 +82,4 @@ did the development and testing process go for you?
 
 Used AI to understand what to return for void* return types.
 Used AI to learn how to implicit cast a void* type to a argument type.
+Used AI for testing the code
